@@ -1,4 +1,4 @@
-from models.SepReformer_Base_WSJ0.main import MainProcessor
+from SepReformer.models.SepReformer_Base_WSJ0.main import MainProcessor
 
 class SepForm:
     @staticmethod

@@ -39,7 +39,7 @@ def load_last_checkpoint_n_get_epoch(checkpoint_dir, model, optimizer, location)
 
         # Load the checkpoint into the model & optimizer
         logger.info(f"Loaded Pretrained model from {latest_checkpoint_file} .....")
-        checkpoint_dict = torch.load(latest_checkpoint_file, map_location=location)
+        checkpoint_dict = torch.load(latest_checkpoint_file, map_location=location, weights_only=False)
         model.load_state_dict(checkpoint_dict['model_state_dict'], strict=False) # Depend on weight file's key!!
         optimizer.load_state_dict(checkpoint_dict['optimizer_state_dict'])
         

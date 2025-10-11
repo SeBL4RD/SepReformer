@@ -12,7 +12,8 @@ class SepForm:
         
         try:
             model_name = "SepReformer_Base_WSJ0"
-            MainProcessor.run(model_name, "infer_sample", input_file, output_path)
+            engine_mode = "infer_sample"
+            MainProcessor.run(model_name, engine_mode, input_file, output_path)
         finally:
             # Revenir au répertoire original
             os.chdir(original_dir)

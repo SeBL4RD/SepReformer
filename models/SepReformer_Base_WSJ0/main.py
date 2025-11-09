@@ -1,5 +1,6 @@
 import os
 import torch
+import sys
 from loguru import logger
 from .dataset import get_dataloaders
 from .model import Model
@@ -9,7 +10,9 @@ from utils.decorators import *
 
 # Setup logger
 log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "log/system_log.log")
-logger.add(log_file_path, level="DEBUG", mode="w")
+logger.remove()  # supprime tout handler existant
+logger.add(log_file_path, level="INFO", mode="w")   # log file, mais pas les DEBUG
+logger.add(sys.stderr, level="WARNING")             # console, warnings et erreurs seulement
 
 class MainProcessor:
     @logger_wraps()

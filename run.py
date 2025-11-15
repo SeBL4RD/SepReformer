@@ -1,9 +1,9 @@
 import os
-from models.SepReformer_Base_WSJ0.main import MainProcessor
+import importlib
 
 class SepForm:
     @staticmethod
-    def separ_tracks(output_path, input_file):
+    def separ_tracks(output_path, input_file, model_name="SepReformer_Base_WSJ0"):
         # Sauvegarder le répertoire actuel
         original_dir = os.getcwd()
         
@@ -11,7 +11,11 @@ class SepForm:
         os.chdir('/app/SepReformer')
         
         try:
-            model_name = "SepReformer_Large_DM_WHAMR"
+            # Import dynamique du bon MainProcessor
+            module_path = f"models.{model_name}.main"
+            main_module = importlib.import_module(module_path)
+            MainProcessor = main_module.MainProcessor
+            
             engine_mode = "infer_sample"
             MainProcessor.run(model_name, engine_mode, input_file, output_path)
         finally:

@@ -11,7 +11,7 @@ class SepForm:
         os.chdir('/app/SepReformer')
         
         try:
-            model_name = "SepReformer_Base_WSJ0"
+            model_name = "SepReformer_Large_DM_WHAMR"
             engine_mode = "infer_sample"
             MainProcessor.run(model_name, engine_mode, input_file, output_path)
         finally:
